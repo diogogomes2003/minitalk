@@ -6,7 +6,7 @@
 #    By: dduarte- <dduarte-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/07 13:11:11 by dduarte-          #+#    #+#              #
-#    Updated: 2023/06/07 13:27:11 by dduarte-         ###   ########.fr        #
+#    Updated: 2023/09/20 12:57:56 by dduarte-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,20 @@ $(NAME):    ${OBJ_SERVER} ${OBJ_CLIENT}
 			cc ${CFLAGS} ${OBJ_SERVER} ${NAME} -o server
 			cc ${CFLAGS} ${OBJ_CLIENT} ${NAME} -o client
 			@echo "${C_GREEN}[COMPILED]${C_DEF}"
+
+server:	${OBJ_SERVER}
+		${MAKE} printf
+		cp ${PRINTF_PATH} ${NAME}
+		ar rcs ${NAME} ${OBJ_SERVER}
+		cc ${CFLAGS} ${OBJ_SERVER} ${NAME} -o server
+		@echo "${C_GREEN}[SERVER CREATED]${C_DEF}"
+
+client:	${OBJ_CLIENT}
+		${MAKE} printf
+		cp ${PRINTF_PATH} ${NAME}
+		ar rcs ${NAME} ${OBJ_CLIENT}
+		cc ${CFLAGS} ${OBJ_CLIENT} ${NAME} -o client
+		@echo "${C_GREEN}[CLIENT CREATED]${C_DEF}"
 
 clean:	
 		${MAKE} printf clean
